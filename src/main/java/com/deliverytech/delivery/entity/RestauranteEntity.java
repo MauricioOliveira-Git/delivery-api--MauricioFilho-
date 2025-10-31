@@ -42,13 +42,14 @@ public class RestauranteEntity {
         this.createdAt = LocalDateTime.now();
     }
 
-    public RestauranteEntity(String name, String category, String address, String phone, Integer deliveryTime) {
+    public RestauranteEntity(String name, String category, String address, String phone, Integer deliveryTime, Boolean active) {
         this();
         this.name = name;
         this.category = category;
         this.address = address;
         this.phone = phone;
         this.deliveryTime = deliveryTime;
+        this.active = active;
     }
 
     public Long getId() {

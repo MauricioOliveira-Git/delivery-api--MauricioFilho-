@@ -1,18 +1,20 @@
 package com.deliverytech.delivery.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import com.deliverytech.delivery.entity.ProdutoEntity;
-import java.util.List;
 import org.springframework.stereotype.Repository;
+
+import com.deliverytech.delivery.entity.ProdutoEntity;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<ProdutoEntity, Long> {
 
     List<ProdutoEntity> findByRestaurantId(Long restaurantId);
 
-    List<ProdutoEntity> fingByRestaurantIdAndActiveTrue(long restaurantId);
+    List<ProdutoEntity> findByRestaurantIdAndActiveTrue(long restaurantId);
 
     List<ProdutoEntity> findByCategoryAndActiveTrue(String category);
 

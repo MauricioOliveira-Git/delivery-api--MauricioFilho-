@@ -41,12 +41,13 @@ public class ClienteEntity {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public ClienteEntity(String name, String email, String phone, String address) {
+    public ClienteEntity(String name, String email, String phone,Boolean active, String address) {
         this();
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.active = active;
     }
 
     public Long getId() {
@@ -81,12 +82,19 @@ public class ClienteEntity {
         this.phone = phone;
     }
 
-    public String getaddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setaddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
+    }
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public LocalDateTime getCreatedAt() {
