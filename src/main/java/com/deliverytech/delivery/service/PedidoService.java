@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.deliverytech.delivery.dto.OrderItemDTO;
 import com.deliverytech.delivery.entity.ClienteEntity;
 import com.deliverytech.delivery.entity.ItemPedidoEntity;
 import com.deliverytech.delivery.entity.PedidoEntity;
@@ -31,9 +32,8 @@ public class PedidoService {
     @Autowired
     private ProdutoService produtoService;
 
-    // CREATE
     @Transactional
-    public PedidoEntity createOrder(Long clientId, Long restaurantId, String deliveryAddress, List<OrderItem> items) {
+    public PedidoEntity createOrder(Long clientId, Long restaurantId, String deliveryAddress, List<OrderItemDTO> items) {
         if (!clienteService.activeClientExists(clientId)) {
             throw new RuntimeException("Cliente não encontrado com ID: " + clientId);
         }
@@ -52,7 +52,7 @@ public class PedidoService {
 
         BigDecimal orderTotal = BigDecimal.ZERO;
         
-        for (OrderItem item : items) {
+        for (OrderItemDTO item : items) {
             ProdutoEntity product = produtoService.searchById(item.getProductId())
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado com ID: " + item.getProductId()));
             
@@ -82,7 +82,6 @@ public class PedidoService {
         return pedidoRepository.save(order);
     }
 
-    // READ
     public Optional<PedidoEntity> searchById(Long id) {
         return pedidoRepository.findById(id);
     }
@@ -92,7 +91,7 @@ public class PedidoService {
     }
 
     public List<PedidoEntity> listOrdersByStatus(StatusPedido status) {
-        return pedidoRepository.findbyStatus(status);
+        return pedidoRepository.findByStatus(status);
     }
 
     public List<PedidoEntity> listActiveOrdersByClient(Long clientId) {
@@ -102,7 +101,6 @@ public class PedidoService {
             .toList();
     }
 
-    // UPDATE
     @Transactional
     public PedidoEntity updateStatus(Long orderId, StatusPedido newStatus) {
         PedidoEntity order = pedidoRepository.findById(orderId)
@@ -143,15 +141,4 @@ public class PedidoService {
 
         return order.getRestaurant().getDeliveryTime() + 10;
     }
-}
-
-class OrderItem {
-    private Long productId;
-    private Integer quantity;
-
-    public Long getProductId() { return productId; }
-    public void setProductId(Long productId) { this.productId = productId; }
-    
-    public Integer getQuantity() { return quantity; }
-    public void setQuantity(Integer quantity) { this.quantity = quantity; }
 }
