@@ -40,11 +40,11 @@ public class RestauranteService {
     }
 
     public List<RestauranteEntity> searchByCategory(String category) {
-        return restauranteRepository.findByCategoryActiveTrue(category);
+        return restauranteRepository.findByCategoryAndActiveTrue(category);
     }
 
     public List<RestauranteEntity> searchByName(String name) {
-        return restauranteRepository.findByNameContainingIgnoraCamelCase(name);
+        return restauranteRepository.findByNameContainingIgnoreCase(name);
     }
 
     public List<RestauranteEntity> searchByNameOrCategory(String term) {

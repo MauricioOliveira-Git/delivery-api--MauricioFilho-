@@ -20,8 +20,9 @@ public interface PedidoRepository extends JpaRepository<PedidoEntity, Long> {
 
     List<PedidoEntity> findByClientIdAndStatus(long clientId, StatusPedido status);
 
-    List<PedidoEntity> findByDateAfterCrate(LocalDateTime data);
+    List<PedidoEntity> findByCreationDateAfter(LocalDateTime data);
 
-    @Query("SELECT po FROM PedidoEntity pe WHERE pe.crateDate BETWEEN :startDate AND :finalDate")
-    List<PedidoEntity> findOrdersByOrder(@Param("startDate") LocalDateTime startDate, @Param("finalDate") LocalDateTime finalDate);
+    @Query("SELECT p FROM PedidoEntity p WHERE p.creationDate BETWEEN :startDate AND :endDate")
+    List<PedidoEntity> findOrdersByDateRange(@Param("startDate") LocalDateTime startDate, 
+                                            @Param("endDate") LocalDateTime endDate);
 }

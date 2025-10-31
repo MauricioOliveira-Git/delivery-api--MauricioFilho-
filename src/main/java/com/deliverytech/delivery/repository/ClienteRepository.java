@@ -17,7 +17,7 @@ public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
 
     List<ClienteEntity> findByActiveTrue();
 
-    List<ClienteEntity> findByContainingIgnoreCamelCase(String name);
+    List<ClienteEntity> findByNameContainingIgnoreCase(String name);
 
     boolean existsByEmail(String email);
 

@@ -44,7 +44,7 @@ public class ClienteService {
     }
 
     public List<ClienteEntity> searchForName(String name) {
-        return clienteRepository.findByContainingIgnoreCamelCase(name);
+        return clienteRepository.findByNameContainingIgnoreCase(name);
     }
 
     //UPDATED
