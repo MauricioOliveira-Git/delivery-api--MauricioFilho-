@@ -21,7 +21,7 @@ import com.deliverytech.delivery.entity.ProdutoEntity;
 import com.deliverytech.delivery.service.ProdutoService;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("api/produtos")
 public class ProdutoController {
 
     @Autowired

@@ -21,7 +21,7 @@ import com.deliverytech.delivery.entity.ClienteEntity;
 import com.deliverytech.delivery.service.ClienteService;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("api/clientes")
 public class ClienteController {
 
     @Autowired

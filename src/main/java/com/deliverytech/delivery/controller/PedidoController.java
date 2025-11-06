@@ -21,7 +21,7 @@ import com.deliverytech.delivery.entity.StatusPedido;
 import com.deliverytech.delivery.service.PedidoService;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("api/pedidos")
 public class PedidoController {
 
     @Autowired
