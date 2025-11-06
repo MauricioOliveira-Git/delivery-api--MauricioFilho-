@@ -21,7 +21,7 @@
     import com.deliverytech.delivery.service.RestauranteService;
 
     @RestController
-    @RequestMapping("/restaurantes")
+    @RequestMapping("api/restaurantes")
     public class RestauranteController {
 
         @Autowired

@@ -1,8 +1,15 @@
 package com.deliverytech.delivery.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "restaurantes")
@@ -26,6 +33,9 @@ public class RestauranteEntity {
     @Column(nullable = false)
     private String phone;
 
+    @Column(name = "delivery_price")
+    private BigDecimal deliveryPrice;
+
     @Column(name = "delivery_time")
     private Integer deliveryTime;
 
@@ -42,13 +52,14 @@ public class RestauranteEntity {
         this.createdAt = LocalDateTime.now();
     }
 
-    public RestauranteEntity(String name, String category, String address, String phone, Integer deliveryTime, Boolean active) {
+    public RestauranteEntity(String name, String category, String address, String phone, Integer deliveryTime, BigDecimal deliveryPrice, Boolean active) {
         this();
         this.name = name;
         this.category = category;
         this.address = address;
         this.phone = phone;
         this.deliveryTime = deliveryTime;
+        this.deliveryPrice = deliveryPrice;
         this.active = active;
     }
 
@@ -94,6 +105,13 @@ public class RestauranteEntity {
 
     public Integer getDeliveryTime() {
         return deliveryTime;
+    }
+
+    public void setDeliveryPrice(BigDecimal deliveryPrice) {
+        this.deliveryPrice = deliveryPrice;
+    }
+    public BigDecimal getDeliveryPrice() {
+        return deliveryPrice;
     }
 
     public void setDeliveryTime(Integer deliveryTime) {

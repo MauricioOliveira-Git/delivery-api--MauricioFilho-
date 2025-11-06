@@ -1,9 +1,16 @@
 package com.deliverytech.delivery.entity;
 
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "clientes")
@@ -18,7 +25,7 @@ public class ClienteEntity {
     private String name;
 
     @Email(message = "O corpo do E-mail está INVÁLIDO1")
-    @Column(nullable = false, unique = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
